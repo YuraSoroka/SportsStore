@@ -25,7 +25,7 @@ namespace SportsStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();     // addeed mvc
-            services.AddDbContext<StoreDbContext>(opts => opts.UseSqlServer(Configuration["ConnectionStrings : SportsStoreConnection"]));
+            services.AddDbContext<StoreDbContext>(opts => opts.UseSqlServer(Configuration["ConnectionStrings:SportsStoreConnection"]));
             services.AddScoped<IStoreRepository, EFStoreRepository>();
         }
 
@@ -37,6 +37,7 @@ namespace SportsStore
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>  endpoints.MapDefaultControllerRoute() );
+            SeedData.EnsurePopulated(app);
         }
     }
 }
